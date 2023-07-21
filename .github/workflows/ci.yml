@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'ubuntu/**'
+      - 'canary-*'
+  pull_request:
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: '3.10.x'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: ${{env.FLUTTER_VERSION}}
+    - run: flutter pub get
+    - run: flutter analyze
+
+  format:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: ${{env.FLUTTER_VERSION}}
+    - run: flutter pub get
+    - run: >
+          find . -name '*.dart'
+          ! -name '*.g.dart'
+          ! -name '*.freezed.dart'
+          ! -path '*/l10n/*'
+          ! -path '*/.*/*'
+          | xargs dart format --set-exit-if-changed
+
+  test:
+    if: false
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: ${{env.FLUTTER_VERSION}}
+    - run: sudo apt update && sudo apt install lcov
+    - run: flutter pub get
+    - run: flutter test --coverage
+    - uses: codecov/codecov-action@v3
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
