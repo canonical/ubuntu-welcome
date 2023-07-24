@@ -10,7 +10,7 @@ jobs:
       - name: Check if CLA signed
         uses: canonical/has-signed-canonical-cla@v1
         with:
-          exempted-bots: github-actions,renovate
+          exempted-bots: dependabot,github-actions,renovate
 
   title:
     permissions:
