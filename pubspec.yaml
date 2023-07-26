@@ -16,7 +16,7 @@ dependencies:
   ubuntu_init:
     path: vendor/ubuntu-desktop-provision/packages/ubuntu_init
   ubuntu_localizations: ^0.3.3
-  ubuntu_logger: ^0.0.3
+  ubuntu_logger: ^0.1.0
   ubuntu_provision:
     path: vendor/ubuntu-desktop-provision/packages/ubuntu_provision
   ubuntu_utils:
