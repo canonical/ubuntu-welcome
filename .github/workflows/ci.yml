@@ -24,7 +24,8 @@ jobs:
         channel: 'stable'
         flutter-version: ${{env.FLUTTER_VERSION}}
     - run: flutter pub get
-    - run: flutter analyze
+    - run: flutter pub global activate melos
+    - run: melos analyze
 
   format:
     runs-on: ubuntu-22.04
@@ -37,13 +38,8 @@ jobs:
         channel: 'stable'
         flutter-version: ${{env.FLUTTER_VERSION}}
     - run: flutter pub get
-    - run: >
-          find . -name '*.dart'
-          ! -name '*.g.dart'
-          ! -name '*.freezed.dart'
-          ! -path '*/l10n/*'
-          ! -path '*/.*/*'
-          | xargs dart format --set-exit-if-changed
+    - run: flutter pub global activate melos
+    - run: melos format
 
   test:
     if: false
