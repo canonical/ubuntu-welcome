@@ -8,6 +8,9 @@ confinement: strict
 base: core22
 issues: https://github.com/canonical/ubuntu-welcome/issues
 contact: https://github.com/canonical/ubuntu-welcome/issues
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 
 apps:
   ubuntu-welcome:
@@ -18,6 +21,9 @@ apps:
       LOG_LEVEL: debug
     plugs:
       - desktop-launch
+      - hardware-observe
+      - system-observe
+      - telemetry
 
 parts:
   flutter-git:
@@ -55,6 +61,20 @@ parts:
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
     stage-packages:
       - libsysmetrics1
+      - pciutils
+      - util-linux
+
+lint:
+  ignore:
+    - library:
+        - usr/lib/**/libsysmetrics.so.1
+
+plugs:
+  telemetry:
+    interface: system-files
+    read:
+      - /var/log/installer/telemetry
+      - /var/log/upgrade/telemetry
 
 slots:
   dbus-name:
