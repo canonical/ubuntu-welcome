@@ -23,7 +23,8 @@ apps:
       - desktop-launch
       - hardware-observe
       - system-observe
-      - telemetry
+      - var-log-installer-telemetry
+      - var-log-upgrade-telemetry
 
 parts:
   flutter-git:
@@ -70,10 +71,13 @@ lint:
         - usr/lib/**/libsysmetrics.so.1
 
 plugs:
-  telemetry:
+  var-log-installer-telemetry:
     interface: system-files
     read:
       - /var/log/installer/telemetry
+  var-log-upgrade-telemetry:
+    interface: system-files
+    read:
       - /var/log/upgrade/telemetry
 
 slots:
