@@ -51,3 +51,5 @@ parts:
       flutter pub get
       flutter build linux --release -v
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
+    stage-packages:
+      - libsysmetrics1
