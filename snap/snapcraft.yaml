@@ -16,6 +16,8 @@ apps:
     #desktop: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
     environment:
       LOG_LEVEL: debug
+    plugs:
+      - desktop-launch
 
 parts:
   flutter-git:
