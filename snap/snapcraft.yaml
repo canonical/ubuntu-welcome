@@ -4,7 +4,7 @@ summary: Ubuntu Welcome
 description: |
   Ubuntu Welcome description.
 grade: stable
-confinement: devmode
+confinement: strict
 base: core22
 issues: https://github.com/canonical/ubuntu-welcome/issues
 contact: https://github.com/canonical/ubuntu-welcome/issues
