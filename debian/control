@@ -1,0 +1,12 @@
+Source: ubuntu-welcome
+Section: x11
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 13),
+Standards-Version: 4.6.1
+
+Package: ubuntu-welcome
+Architecture: all
+Depends: ${misc:Depends},
+Description: Ubuntu Welcome - Initial Setup of Ubuntu Desktop
+ Autostart for the Ubuntu Welcome Out of the Box experience.
