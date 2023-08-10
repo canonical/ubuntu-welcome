@@ -20,7 +20,6 @@ apps:
     environment:
       LOG_LEVEL: debug
     plugs:
-      - desktop-launch
       - hardware-observe
       - log-observe
       - system-observe
