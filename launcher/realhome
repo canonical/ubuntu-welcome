@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export REALHOME=$(getent passwd $(id -u) | cut -d ':' -f 6)
+
+exec "$@"

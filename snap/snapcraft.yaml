@@ -20,6 +20,7 @@ plugs:
 
 apps:
   ubuntu-welcome:
+    command-chain: [ realhome ]
     command: bin/ubuntu_welcome
     extensions: [gnome]
     desktop: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
@@ -53,6 +54,12 @@ parts:
       - xz-utils
       - zip
     override-prime: ''
+
+  launcher:
+    plugin: dump
+    source: launcher
+    override-build: |
+      cp realhome $CRAFT_PART_INSTALL/
 
   ubuntu-welcome:
     after: [flutter-git]
