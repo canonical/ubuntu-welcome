@@ -32,7 +32,7 @@ Future<void> main(List<String> args) async {
           supportedLocales: supportedLocales,
           home: DefaultAssetBundle(
             bundle: ProxyAssetBundle(rootBundle, package: 'ubuntu_welcome'),
-            child: const InitWizard(),
+            child: InitWizard(),
           ),
         ),
       ),
