@@ -22,7 +22,7 @@ apps:
   ubuntu-welcome:
     command: bin/ubuntu_welcome
     extensions: [gnome]
-    autostart: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
+    desktop: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
     environment:
       LOG_LEVEL: debug
     plugs:
