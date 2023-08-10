@@ -12,11 +12,17 @@ architectures:
   - build-on: amd64
   - build-on: arm64
 
+plugs:
+  dot-config-ubuntu-welcome-done:
+    interface: personal-files
+    write:
+      - $HOME/.config/ubuntu-welcome-done
+
 apps:
   ubuntu-welcome:
     command: bin/ubuntu_welcome
     extensions: [gnome]
-    #desktop: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
+    autostart: bin/data/flutter_assets/assets/ubuntu-welcome.desktop
     environment:
       LOG_LEVEL: debug
     plugs:
@@ -24,6 +30,7 @@ apps:
       - hardware-observe
       - log-observe
       - system-observe
+      - dot-config-ubuntu-welcome-done
 
 parts:
   flutter-git:

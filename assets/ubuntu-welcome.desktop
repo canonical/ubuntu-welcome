@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Initial Setup
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=preferences-system
+Exec=ubuntu-welcome
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;System;
+OnlyShowIn=GNOME;Unity;
+NoDisplay=true
+AutostartCondition=unless-exists ubuntu-welcome-done
+X-GNOME-HiddenUnderSystemd=true
