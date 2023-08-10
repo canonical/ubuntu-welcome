@@ -26,7 +26,7 @@ scripts:
       dart run build_runner build --delete-conflicting-outputs
 
   gen-l10n: >
-    melos exec -c 1 --fail-fast --file-exists="lib/l10n.dart" --scope="ubuntu_welcome" -- \
+    melos exec -c 1 --fail-fast --scope="ubuntu_welcome" -- \
      flutter gen-l10n
 
   integration_test: >

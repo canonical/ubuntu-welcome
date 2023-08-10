@@ -1,41 +1,13 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ubuntu_init/ubuntu_init.dart';
-import 'package:ubuntu_logger/ubuntu_logger.dart';
-import 'package:ubuntu_provision/ubuntu_provision.dart';
-import 'package:ubuntu_utils/ubuntu_utils.dart';
-import 'package:ubuntu_welcome/l10n.dart';
-import 'package:ubuntu_wizard/ubuntu_wizard.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Future<void> main(List<String> args) async {
-  final log = Logger.setup();
-
-  return runZonedGuarded(() async {
-    FlutterError.onError = (error) {
-      log.error('Unhandled exception', error.exception, error.stack);
-    };
-
-    await YaruWindowTitleBar.ensureInitialized();
-
-    await registerInitServices(args);
-
-    runApp(ProviderScope(
-      child: Consumer(
-        builder: (context, ref, child) => WizardApp(
-          locale: ref.watch(localeProvider),
-          onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-          localizationsDelegates: localizationsDelegates,
-          supportedLocales: supportedLocales,
-          home: DefaultAssetBundle(
-            bundle: ProxyAssetBundle(rootBundle, package: 'ubuntu_welcome'),
-            child: InitWizard(),
-          ),
-        ),
-      ),
-    ));
-  }, (error, stack) => log.error('Unhandled exception', error, stack));
+Future<void> main(List<String> args) {
+  return runInitApp(
+    args,
+    package: 'ubuntu_welcome',
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+  );
 }
