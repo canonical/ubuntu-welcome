@@ -9,4 +9,4 @@ StartupNotify=true
 Categories=GNOME;GTK;System;
 OnlyShowIn=GNOME;Unity;
 NoDisplay=true
-X-GNOME-HiddenUnderSystemd=true
+AutostartCondition=unless-exists ubuntu-welcome-done
