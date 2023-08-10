@@ -13,7 +13,11 @@ Future<void> main(List<String> args) {
     onDone: () {
       final home =
           Platform.environment['REALHOME'] ?? Platform.environment['HOME'];
-      File('$home/.config/ubuntu-welcome-done').createSync();
+      try {
+        File('$home/.config/ubuntu-welcome-done').createSync();
+      } on FileSystemException catch (e) {
+        stderr.writeln(e);
+      }
     },
   );
 }
