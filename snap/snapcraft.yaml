@@ -22,9 +22,8 @@ apps:
     plugs:
       - desktop-launch
       - hardware-observe
+      - log-observe
       - system-observe
-      - var-log-installer-telemetry
-      - var-log-upgrade-telemetry
 
 parts:
   flutter-git:
@@ -69,16 +68,6 @@ lint:
   ignore:
     - library:
         - usr/lib/**/libsysmetrics.so.1
-
-plugs:
-  var-log-installer-telemetry:
-    interface: system-files
-    read:
-      - /var/log/installer/telemetry
-  var-log-upgrade-telemetry:
-    interface: system-files
-    read:
-      - /var/log/upgrade/telemetry
 
 slots:
   dbus-name:
